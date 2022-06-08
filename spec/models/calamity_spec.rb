@@ -20,7 +20,7 @@ RSpec.describe Calamity, type: :model do
     end
 
     it '3. is not valid without estimated-date-to' do
-      calamity.area_id = area.id
+      calamity.area_id = 1
       calamity.estimated_date_from = DateTime.now
       calamity.type = "Flood"
       calamity.description = "Waist deep"
@@ -28,7 +28,7 @@ RSpec.describe Calamity, type: :model do
     end
 
     it '4. is not valid if estimated-date-to is an earlier date from estimated-date-from' do
-      calamity.area_id = area.id
+      calamity.area_id = 1
       calamity.estimated_date_from = DateTime.now
       calamity.estimated_date_to = DateTime.now - 1
       calamity.type = "Flood"
@@ -37,7 +37,7 @@ RSpec.describe Calamity, type: :model do
     end
 
     it '5. is not valid without type' do
-      calamity.area_id = area.id
+      calamity.area_id = 1
       calamity.estimated_date_from = DateTime.now
       calamity.estimated_date_to = DateTime.now + 1
       calamity.description = "Waist deep"
@@ -45,7 +45,7 @@ RSpec.describe Calamity, type: :model do
     end
 
     it '6. is not valid without description' do
-      calamity.area_id = area.id
+      calamity.area_id = 1
       calamity.estimated_date_from = DateTime.now
       calamity.estimated_date_to = DateTime.now + 1
       calamity.type = "Flood"
@@ -54,7 +54,7 @@ RSpec.describe Calamity, type: :model do
 
     it '7. is not valid if description goes beyond 140 characters' do
       hundred_and_forty_chars_string = "jtlPG2S2v1sbqSA2WujlEFWSei1WC7Q1J8ILywfX2rQvpb4GdkGuWxYMmVsWrizz0OZbVI8VXv510okvo9qJljF4x7OEqa208b9ZzV3B0ykGbanrRL2Q9xSZ5Dhqe20jOm4Cc2p0IDVi" 
-      calamity.area_id = area.id
+      calamity.area_id = 1
       calamity.estimated_date_from = DateTime.now
       calamity.estimated_date_to = DateTime.now + 1
       calamity.type = "Flood"
