@@ -96,8 +96,8 @@ RSpec.describe Area, type: :model do
       expect(t.macro).to eq(:has_many)
     end
 
-    it "3. should have one contact people" do
-      t = Area.reflect_on_association(:contact_people)
+    it "3. should have one contact person" do
+      t = Area.reflect_on_association(:contact_person)
       expect(t.macro).to eq(:has_one)
     end
 
