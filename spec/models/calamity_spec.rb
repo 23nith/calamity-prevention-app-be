@@ -63,4 +63,12 @@ RSpec.describe Calamity, type: :model do
     end
 
   end
+
+  context "Association" do
+    it "should have many needs" do
+      t = Calamity.reflect_on_association(:needs)
+      expect(t.macro).to eq(:has_many)
+    end
+  end
+  
 end
