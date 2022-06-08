@@ -45,4 +45,23 @@ RSpec.describe Area, type: :model do
     end
 
   end
+
+  context "Association" do
+
+    it "should have many users" do
+      t = Area.reflect_on_association(:users)
+      expect(t.macro).to eq(:has_many)
+    end
+
+    it "should have many calamities" do
+      t = Area.reflect_on_association(:calamities)
+      expect(t.macro).to eq(:has_many)
+    end
+
+    it "should have one contact person" do
+      t = Area.reflect_on_association(:contact_person)
+      expect(t.macro).to eq(:has_one)
+    end
+
+  end
 end
