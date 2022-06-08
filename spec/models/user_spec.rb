@@ -47,12 +47,12 @@ RSpec.describe User, type: :model do
   context "Association" do
 
     it "should have many donations" do
-      t = Calamity.reflect_on_association(:donations)
+      t = User.reflect_on_association(:donations)
       expect(t.macro).to eq(:has_many)
     end
 
     it "should belong to area" do
-      t = Calamity.reflect_on_association(:area)
+      t = User.reflect_on_association(:area)
       expect(t.macro).to eq(:belongs_to)
     end
 
