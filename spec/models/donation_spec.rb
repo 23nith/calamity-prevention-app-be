@@ -49,7 +49,7 @@ RSpec.describe Donation, type: :model do
 
     it "should have one" do
       t = Donation.reflect_on_association(:need)
-      expect(t.macro).to eq(:has_many)
+      expect(t.macro).to eq(:has_one)
     end
 
     it "should belong to user" do
