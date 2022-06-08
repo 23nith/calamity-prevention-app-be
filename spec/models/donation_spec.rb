@@ -44,4 +44,19 @@ RSpec.describe Donation, type: :model do
     end
 
   end
+
+  context "Association" do
+
+    it "should have one" do
+      t = Donation.reflect_on_association(:need)
+      expect(t.macro).to eq(:has_many)
+    end
+
+    it "should belong to user" do
+      t = Donation.reflect_on_association(:user)
+      expect(t.macro).to eq(:belongs_to)
+    end
+
+  end
+
 end
