@@ -6,9 +6,13 @@ RSpec.describe User, type: :model do
     let!(:user) {User.new}
     
     it "1. is not valid without area_id" do
+      user.area_id = 1
       user.first_name = "firstName"
       user.last_name = "lastName"
       user.address = "Quezon City"
+      user.longitude = 1.5
+      user.latitude = 1.5
+      user.role = "user"
       expect(user).to_not be_valid
     end
 
@@ -16,6 +20,9 @@ RSpec.describe User, type: :model do
       user.area_id = 1
       user.last_name = "lastName"
       user.address = "Quezon City"
+      user.longitude = 1.5
+      user.latitude = 1.5
+      user.role = "user"
       expect(user).to_not be_valid
     end
 
@@ -23,6 +30,9 @@ RSpec.describe User, type: :model do
       user.area_id = 1
       user.first_name = "firstName"
       user.address = "Quezon City"
+      user.longitude = 1.5
+      user.latitude = 1.5
+      user.role = "user"
       expect(user).to_not be_valid
     end
 
@@ -30,6 +40,9 @@ RSpec.describe User, type: :model do
       user.area_id = 1
       user.first_name = "firstName"
       user.last_name = "lastName"
+      user.longitude = 1.5
+      user.latitude = 1.5
+      user.role = "user"
       expect(user).to_not be_valid
     end
 
@@ -39,6 +52,41 @@ RSpec.describe User, type: :model do
       user.first_name = "firstName"
       user.last_name = "lastName"
       user.address = two_hundred_chars_string + "1"
+      user.longitude = 1.5
+      user.latitude = 1.5
+      user.role = "user"
+      expect(user).to_not be_valid
+    end
+    
+    it "6. is not valid without longitude" do
+      user.area_id = 1
+      user.first_name = "firstName"
+      user.last_name = "lastName"
+      user.address = "Quezon City"
+      user.latitude = 1.5
+      user.role = "user"
+      expect(user).to_not be_valid
+    end
+    
+    it "7. is not valid if longitude is not numerical" do
+      user.area_id = 1
+      user.first_name = "firstName"
+      user.last_name = "lastName"
+      user.address = "Quezon City"
+      user.longitude = "string"
+      user.latitude = 1.5
+      user.role = "user"
+      expect(user).to_not be_valid
+    end
+    
+    it "8. is not valid if latitude is not numerical" do
+      user.area_id = 1
+      user.first_name = "firstName"
+      user.last_name = "lastName"
+      user.address = "Quezon City"
+      user.longitude = 1.5
+      user.latitude = "string"
+      user.role = "user"
       expect(user).to_not be_valid
     end
 
