@@ -5,7 +5,6 @@ RSpec.describe Admin, type: :model do
     let!(:admin) {Admin.new}
 
     it "1. is not valid without user_id" do
-      admin.area_id = 1
       expect(admin).to_not be_valid
     end
 
