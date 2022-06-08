@@ -37,4 +37,19 @@ RSpec.describe Need, type: :model do
     end
 
   end
+
+  context "Association" do
+
+    it "1. should have many donations" do
+      t = Area.reflect_on_association(:donations)
+      expect(t.macro).to eq(:has_many)
+    end
+
+    it "1. should belong to calamity" do
+      t = Area.reflect_on_association(:calamity)
+      expect(t.macro).to eq(:belongs_to)
+    end
+
+  end
+
 end

@@ -16,4 +16,14 @@ RSpec.describe ContactPerson, type: :model do
     end
 
   end
+
+  context "Association" do
+
+    it "1. should belong to area" do
+      t = Area.reflect_on_association(:area)
+      expect(t.macro).to eq(:belongs_to)
+    end
+
+  end
+
 end
