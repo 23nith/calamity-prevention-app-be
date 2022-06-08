@@ -5,7 +5,6 @@ RSpec.describe Calamity, type: :model do
     let!(:calamity) {Calamity.new}
 
     it '1. is not valid without area id' do
-      calamity.area_id = area.id
       calamity.estimated_date_from = DateTime.now
       calamity.estimated_date_to = DateTime.now + 1
       calamity.type = "Flood"
@@ -53,7 +52,7 @@ RSpec.describe Calamity, type: :model do
       expect(calamity).to_not be_valid
     end
 
-    it '7. is not valid if description goes beyond 140' do
+    it '7. is not valid if description goes beyond 140 characters' do
       hundred_and_forty_chars_string = "jtlPG2S2v1sbqSA2WujlEFWSei1WC7Q1J8ILywfX2rQvpb4GdkGuWxYMmVsWrizz0OZbVI8VXv510okvo9qJljF4x7OEqa208b9ZzV3B0ykGbanrRL2Q9xSZ5Dhqe20jOm4Cc2p0IDVi" 
       calamity.area_id = area.id
       calamity.estimated_date_from = DateTime.now
