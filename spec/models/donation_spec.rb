@@ -29,5 +29,19 @@ RSpec.describe Donation, type: :model do
       expect(donation).to_not be_valid
     end
 
+    it "5. is not valid if amount is nil" do
+      donation.user_id = 1
+      donation.need_id = 1
+      donation.amount = 0
+      expect(donation).to_not be_valid
+    end
+
+    it "6. is not valid if amount is negative" do
+      donation.user_id = 1
+      donation.need_id = 1
+      donation.amount = -5
+      expect(donation).to_not be_valid
+    end
+
   end
 end
