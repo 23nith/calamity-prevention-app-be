@@ -65,10 +65,17 @@ RSpec.describe Calamity, type: :model do
   end
 
   context "Association" do
+
     it "should have many needs" do
       t = Calamity.reflect_on_association(:needs)
       expect(t.macro).to eq(:has_many)
     end
+
+    it "should belong to area" do
+      t = Calamity.reflect_on_association(:area)
+      expect(t.macro).to eq(:belongs_to)
+    end
+
   end
-  
+
 end
