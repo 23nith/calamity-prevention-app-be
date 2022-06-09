@@ -81,7 +81,16 @@ RSpec.describe Area, type: :model do
       area.radius = "string"
       expect(area).to_not be_valid
     end
-
+    
+    it '10. is valid if all fields are present' do
+      area.name = "Project 8"
+      area.address = "Congressional Avenue"
+      area.longitude = 1.5
+      area.latitude = 1.5
+      area.radius = 1.5
+      expect(area).to be_valid
+    end
+    
   end
 
   context "Association" do
