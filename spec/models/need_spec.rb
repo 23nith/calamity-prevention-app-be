@@ -57,6 +57,14 @@ RSpec.describe Need, type: :model do
       expect(need).to_not be_valid
     end
 
+    it "8. is valid if all fields are present" do
+      need.calamity_id = 1
+      need.cost = 100
+      need.count = "string"
+      need.description = "Rescue boats"
+      expect(need).to_not be_valid
+    end
+
   end
 
   context "Association" do
