@@ -12,7 +12,7 @@ RSpec.describe Admin, type: :model do
     
     it "2. is valid if there is user_id" do
       admin.user_id = user.id
-      expect(admin).to_not be_valid
+      expect(admin).to be_valid
     end
 
   end
