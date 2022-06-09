@@ -29,6 +29,13 @@ RSpec.describe Message, type: :model do
       message_content = hundred_and_forty_chars_string + "1"
       expect(message).to_not be_valid
     end
+    
+    it "5. is valid if all fields are present" do 
+      message.sender_id = 1
+      message.receiver_id = 1
+      message_content = "Help"
+      expect(message).to_not be_valid
+    end
 
   end
 end
