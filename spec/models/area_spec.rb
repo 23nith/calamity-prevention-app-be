@@ -82,7 +82,7 @@ RSpec.describe Area, type: :model do
       expect(area).to_not be_valid
     end
     
-    it '10. is valid if all fields are present' do
+    it '10. is valid if all fields are correct' do
       area.name = "Project 8"
       area.address = "Congressional Avenue"
       area.longitude = 1.5

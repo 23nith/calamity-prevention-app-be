@@ -64,7 +64,7 @@ RSpec.describe Calamity, type: :model do
       expect(calamity).to_not be_valid
     end
 
-    it '8. is valid if all fields are present' do
+    it '8. is valid if all fields are correct' do
       calamity.area_id = area.id
       calamity.estimated_date_from = DateTime.now
       calamity.estimated_date_to = DateTime.now + 1

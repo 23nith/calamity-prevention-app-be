@@ -17,7 +17,7 @@ RSpec.describe ContactPerson, type: :model do
       expect(contact_person).to_not be_valid
     end
 
-    it "3. is valid if all fields are present" do
+    it "3. is valid if all fields are correct" do
       contact_person.user_id = user.id
       contact_person.area_id = area.id
       expect(contact_person).to be_valid

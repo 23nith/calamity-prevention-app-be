@@ -46,7 +46,7 @@ RSpec.describe Donation, type: :model do
       expect(donation).to_not be_valid
     end
 
-    it "7. is valid if all fields are present" do
+    it "7. is valid if all fields are correct" do
       donation.user_id = user.id
       donation.need_id = 1
       donation.amount = 100

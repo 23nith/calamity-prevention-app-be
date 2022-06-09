@@ -30,7 +30,7 @@ RSpec.describe Message, type: :model do
       expect(message).to_not be_valid
     end
     
-    it "5. is valid if all fields are present" do 
+    it "5. is valid if all fields are correct" do 
       message.sender_id = 1
       message.receiver_id = 1
       message_content = "Help"
