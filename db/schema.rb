@@ -10,9 +10,74 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_05_064431) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_09_062335) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admins", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_admins_on_user_id"
+  end
+
+  create_table "areas", force: :cascade do |t|
+    t.text "address"
+    t.string "name"
+    t.float "longitude"
+    t.float "latitude"
+    t.float "radius"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "calamities", force: :cascade do |t|
+    t.bigint "area_id", null: false
+    t.date "estimated_date_from"
+    t.date "estimated_date_to"
+    t.text "description"
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["area_id"], name: "index_calamities_on_area_id"
+  end
+
+  create_table "contact_people", force: :cascade do |t|
+    t.bigint "area_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["area_id"], name: "index_contact_people_on_area_id"
+    t.index ["user_id"], name: "index_contact_people_on_user_id"
+  end
+
+  create_table "donations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "need_id", null: false
+    t.decimal "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["need_id"], name: "index_donations_on_need_id"
+    t.index ["user_id"], name: "index_donations_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "receiver_id"
+    t.text "message_content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "needs", force: :cascade do |t|
+    t.bigint "calamity_id", null: false
+    t.decimal "cost"
+    t.integer "count"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["calamity_id"], name: "index_needs_on_calamity_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,10 +92,26 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_05_064431) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "jti"
+    t.bigint "area_id", null: false
+    t.text "address"
+    t.string "first_name"
+    t.string "last_name"
+    t.float "longitude"
+    t.float "latitude"
+    t.string "role"
+    t.index ["area_id"], name: "index_users_on_area_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["jti"], name: "index_users_on_jti"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "admins", "users"
+  add_foreign_key "calamities", "areas"
+  add_foreign_key "contact_people", "areas"
+  add_foreign_key "contact_people", "users"
+  add_foreign_key "donations", "needs"
+  add_foreign_key "donations", "users"
+  add_foreign_key "needs", "calamities"
+  add_foreign_key "users", "areas"
 end
