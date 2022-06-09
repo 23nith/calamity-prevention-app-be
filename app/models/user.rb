@@ -4,7 +4,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :validatable, :confirmable,
          :jwt_authenticatable, jwt_revocation_strategy: self
-
+  
+  has_many :donations
+  belongs_to :area
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :address, presence: true
