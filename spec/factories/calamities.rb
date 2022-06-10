@@ -4,6 +4,6 @@ FactoryBot.define do
     estimated_date_from { "2022-06-09" }
     estimated_date_to { "2022-06-09" }
     description { "MyText" }
-    type { "" }
+    calamity_type { "" }
   end
 end

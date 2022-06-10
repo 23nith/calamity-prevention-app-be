@@ -36,7 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_09_062335) do
     t.date "estimated_date_from"
     t.date "estimated_date_to"
     t.text "description"
-    t.string "type"
+    t.string "calamity_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["area_id"], name: "index_calamities_on_area_id"

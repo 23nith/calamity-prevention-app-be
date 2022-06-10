@@ -8,7 +8,7 @@ RSpec.describe Calamity, type: :model do
     it '1. is not valid without area id' do
       calamity.estimated_date_from = DateTime.now
       calamity.estimated_date_to = DateTime.now + 1
-      calamity.type = "Flood"
+      calamity.calamity_type = "Flood"
       calamity.description = "Waist deep"
       expect(calamity).to_not be_valid
     end
@@ -16,7 +16,7 @@ RSpec.describe Calamity, type: :model do
     it '2. is not valid without estimated-date-from' do
       calamity.area_id = area.id
       calamity.estimated_date_to = DateTime.now + 1
-      calamity.type = "Flood"
+      calamity.calamity_type = "Flood"
       calamity.description = "Waist deep"
       expect(calamity).to_not be_valid
     end
@@ -24,7 +24,7 @@ RSpec.describe Calamity, type: :model do
     it '3. is not valid without estimated-date-to' do
       calamity.area_id = area.id
       calamity.estimated_date_from = DateTime.now
-      calamity.type = "Flood"
+      calamity.calamity_type = "Flood"
       calamity.description = "Waist deep"
       expect(calamity).to_not be_valid
     end
@@ -33,12 +33,12 @@ RSpec.describe Calamity, type: :model do
       calamity.area_id = area.id
       calamity.estimated_date_from = DateTime.now
       calamity.estimated_date_to = DateTime.now - 1
-      calamity.type = "Flood"
+      calamity.calamity_type = "Flood"
       calamity.description = "Waist deep"
       expect(calamity).to_not be_valid
     end
 
-    it '5. is not valid without type' do
+    it '5. is not valid without calamity_type' do
       calamity.area_id = area.id
       calamity.estimated_date_from = DateTime.now
       calamity.estimated_date_to = DateTime.now + 1
@@ -50,7 +50,7 @@ RSpec.describe Calamity, type: :model do
       calamity.area_id = area.id
       calamity.estimated_date_from = DateTime.now
       calamity.estimated_date_to = DateTime.now + 1
-      calamity.type = "Flood"
+      calamity.calamity_type = "Flood"
       expect(calamity).to_not be_valid
     end
 
@@ -59,7 +59,7 @@ RSpec.describe Calamity, type: :model do
       calamity.area_id = area.id
       calamity.estimated_date_from = DateTime.now
       calamity.estimated_date_to = DateTime.now + 1
-      calamity.type = "Flood"
+      calamity.calamity_type = "Flood"
       calamity.description = hundred_and_forty_chars_string + "1"
       expect(calamity).to_not be_valid
     end
@@ -68,7 +68,7 @@ RSpec.describe Calamity, type: :model do
       calamity.area_id = area.id
       calamity.estimated_date_from = DateTime.now
       calamity.estimated_date_to = DateTime.now + 1
-      calamity.type = "Flood"
+      calamity.calamity_type = "Flood"
       calamity.description = "Waist deep"
       expect(calamity).to be_valid
     end
