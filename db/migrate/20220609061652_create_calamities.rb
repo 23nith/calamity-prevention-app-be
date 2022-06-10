@@ -5,7 +5,7 @@ class CreateCalamities < ActiveRecord::Migration[7.0]
       t.date :estimated_date_from
       t.date :estimated_date_to
       t.text :description
-      t.string :type
+      t.string :calamity_type
 
       t.timestamps
     end
