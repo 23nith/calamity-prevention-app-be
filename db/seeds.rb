@@ -53,3 +53,6 @@ end
 3.times do |x|
   Message.create!(sender_id: User.where(role: "user").first.id, receiver_id: User.where(role: "contact_person").second.id, message_content: "help from user #{x + 1}")
 end
+
+
+##########################################################################################
