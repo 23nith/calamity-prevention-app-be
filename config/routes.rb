@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'users/index'
+  get 'users/show'
+  get 'users/create'
+  get 'users/update'
+  get 'users/destroy'
   get 'calamities/index'
   get 'calamities/show'
   get 'calamities/create'
@@ -32,6 +37,12 @@ Rails.application.routes.draw do
   post '/edit_calamity' => 'calamities#update'
   delete '/calamity' => 'calamities#destroy'
   
+  get '/accounts' => 'users#index'
+  post '/account' => 'users#show'
+  post '/add_account' => 'users#create'
+  post '/edit_account' => 'users#update'
+  delete '/account' => 'users#destroy'
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
