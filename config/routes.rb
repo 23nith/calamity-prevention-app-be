@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'calamities/index'
+  get 'calamities/show'
+  get 'calamities/create'
+  get 'calamities/update'
+  get 'calamities/destroy'
   get 'areas/index'
   get 'areas/show'
   get 'areas/create'
@@ -20,6 +25,12 @@ Rails.application.routes.draw do
   post '/add_area' => 'areas#create'
   post '/edit_area' => 'areas#update'
   delete '/area' => 'areas#destroy'
+
+  get '/calamities' => 'calamities#index'
+  post '/calamity' => 'calamities#show'
+  post '/add_calamity' => 'calamities#create'
+  post '/edit_calamity' => 'calamities#update'
+  delete '/calamity' => 'calamities#destroy'
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
