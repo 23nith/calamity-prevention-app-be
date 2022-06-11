@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'needs/index'
+  get 'needs/show'
+  get 'needs/create'
+  get 'needs/update'
+  get 'needs/destroy'
   get 'users/index'
   get 'users/show'
   get 'users/create'
@@ -42,6 +47,12 @@ Rails.application.routes.draw do
   post '/add_account' => 'users#create'
   post '/edit_account' => 'users#update'
   delete '/account' => 'users#destroy'
+  
+  get '/needs' => 'needs#index'
+  post '/need' => 'needs#show'
+  post '/add_need' => 'needs#create'
+  post '/edit_need' => 'needs#update'
+  delete '/need' => 'needs#destroy'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
