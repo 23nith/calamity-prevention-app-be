@@ -1,24 +1,4 @@
 Rails.application.routes.draw do
-  get 'needs/index'
-  get 'needs/show'
-  get 'needs/create'
-  get 'needs/update'
-  get 'needs/destroy'
-  get 'users/index'
-  get 'users/show'
-  get 'users/create'
-  get 'users/update'
-  get 'users/destroy'
-  get 'calamities/index'
-  get 'calamities/show'
-  get 'calamities/create'
-  get 'calamities/update'
-  get 'calamities/destroy'
-  get 'areas/index'
-  get 'areas/show'
-  get 'areas/create'
-  get 'areas/update'
-  get 'areas/destroy'
   get '/current_user', to: 'current_user#index'
   devise_for :users, path: '', path_names: {
     sign_in: 'login',
@@ -53,6 +33,12 @@ Rails.application.routes.draw do
   post '/add_need' => 'needs#create'
   post '/edit_need' => 'needs#update'
   delete '/need' => 'needs#destroy'
+  
+  get '/messages' => 'messages#index'
+  post '/message' => 'messages#show'
+  post '/add_message' => 'messages#create'
+  post '/edit_message' => 'messages#update'
+  delete '/message' => 'messages#destroy'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
