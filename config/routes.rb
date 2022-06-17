@@ -39,6 +39,14 @@ Rails.application.routes.draw do
   post '/add_message' => 'messages#create'
   post '/edit_message' => 'messages#update'
   delete '/message' => 'messages#destroy'
+  
+  get '/donations' => 'donations#index'
+  post '/donation' => 'donations#show'
+  post '/add_donation' => 'donations#create'
+  post '/source' => 'donations#source'
+  post '/payment' => 'donations#payment'
+  post '/webhook' => 'webhook#create'
+  post '/listen' => 'webhook#listen'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
