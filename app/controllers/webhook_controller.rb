@@ -1,6 +1,5 @@
 class WebhookController < ApplicationController
   def listen
-    # debugger
     params.permit!
     reset = false
 
@@ -11,27 +10,18 @@ class WebhookController < ApplicationController
       currency = params["data"]["attributes"]["data"]["attributes"]["currency"]
       source_id = params["data"]["attributes"]["data"]["id"]
       
-      puts "********************* status ************************* #{params["data"]["attributes"]["data"]["attributes"]["status"]} source:  #{source_id}"
-      
       if params["data"]["attributes"]["data"]["attributes"]["status"] != "paid"
         source_val = ewallet_source_record(source_id)
         
         if source_val.present? && source_val['data'].present?
           status = source_val['data']['attributes']['status']
-          
-          if status != "paid"
-            gcash_source_record = ewallet_payment(amount, source_id)
-            payment_status = gcash_source_record['data']['attributes']['status']
-            payment_type = gcash_source_record['data']['attributes']['type']
-          end
+          gcash_source_record = ewallet_payment(amount, source_id)
+          payment_status = gcash_source_record['data']['attributes']['status']
+          payment_type = gcash_source_record['data']['attributes']['type']
         end
       end
 
     end
-      
-    
-
-
 
     # if payment_status == "paid"
     #   case payment_type
@@ -66,7 +56,7 @@ class WebhookController < ApplicationController
           "events" => [
             "source.chargeable", "payment.paid", "payment.failed"
           ],
-          "url" => "https://96dc-136-158-16-23.ap.ngrok.io/listen"
+          "url" => "https://a63c-136-158-16-23.ap.ngrok.io/listen"
         }
       }
     })
