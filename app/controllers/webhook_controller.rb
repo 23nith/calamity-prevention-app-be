@@ -1,8 +1,7 @@
 class WebhookController < ApplicationController
   def listen
-    # debugger
     params.permit!
-    reset = true
+    reset = false
 
     unless reset 
       result = []
@@ -11,25 +10,18 @@ class WebhookController < ApplicationController
       currency = params["data"]["attributes"]["data"]["attributes"]["currency"]
       source_id = params["data"]["attributes"]["data"]["id"]
       
-      puts "********************* status ************************* #{params["data"]["attributes"]["data"]["attributes"]["status"]} source:  #{source_id}"
-
-      status = ewallet_payment(amount, source_id)
-
-      if status.present? && status[:result].present?
-        if status[:result]['errors'].collect { |x| x['code'] }.include?("resource_not_chargeable_state")
-          gcash_source_record = ewallet_source_record(source_id)
+      if params["data"]["attributes"]["data"]["attributes"]["status"] != "paid"
+        source_val = ewallet_source_record(source_id)
+        
+        if source_val.present? && source_val['data'].present?
+          status = source_val['data']['attributes']['status']
+          gcash_source_record = ewallet_payment(amount, source_id)
           payment_status = gcash_source_record['data']['attributes']['status']
           payment_type = gcash_source_record['data']['attributes']['type']
-        else
-          payment_status = status["data"]["attributes"]["status"]
-          payment_type = status["data"]["attributes"]["source"]["type"]
         end
       end
+
     end
-      
-    
-
-
 
     # if payment_status == "paid"
     #   case payment_type
@@ -64,7 +56,7 @@ class WebhookController < ApplicationController
           "events" => [
             "source.chargeable", "payment.paid", "payment.failed"
           ],
-          "url" => "https://fae6-136-158-16-23.ap.ngrok.io/listen"
+          "url" => "https://a63c-136-158-16-23.ap.ngrok.io/listen"
         }
       }
     })
@@ -82,7 +74,6 @@ class WebhookController < ApplicationController
 
   private
     def ewallet_payment(amount, source_id)
-      puts "***************************** ewallet_payment *****************************: #{source_id}"
       require 'uri'
       require 'net/http'
       require 'openssl'
@@ -99,12 +90,10 @@ class WebhookController < ApplicationController
       request.body = "{\"data\":{\"attributes\":{\"amount\":#{amount},\"source\":{\"id\":\"#{source_id}\",\"type\":\"source\"},\"currency\":\"PHP\"}}}"
 
       response = http.request(request)
-      puts response.read_body
-      render json: response.read_body
+      JSON.parse(response.body)
     end
 
     def ewallet_source_record(source_id)
-      puts "***************************** ewallet_source_record *****************************: #{source_id}"
 
       require 'uri'
       require 'net/http'
@@ -120,6 +109,6 @@ class WebhookController < ApplicationController
       request["Authorization"] = "Basic #{ENV['paymongo_token']}"
 
       response = http.request(request)
-      puts response.read_body
+      JSON.parse(response.body)
     end
 end
