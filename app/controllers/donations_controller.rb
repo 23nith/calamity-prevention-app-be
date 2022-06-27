@@ -1,4 +1,6 @@
 class DonationsController < ApplicationController
+  before_action :set_donation, only: %i[show update destroy]
+
   def index
     @donations = Donation.all
   end
@@ -7,7 +9,12 @@ class DonationsController < ApplicationController
   end
 
   def create
-    
+    @donation = Donation.new(donation_params)
+    if @donation.save!
+      render json: @donation, status: :created, location: @donation
+    else
+      render json: @donation.errors, status: :unprocessable_entity
+    end
   end
 
   def source
@@ -58,7 +65,7 @@ class DonationsController < ApplicationController
     end
 
     def donation_params
-      params.require(:donation).permit(:user_id, :need_id, :amount, :source_id, :type)
+      params.require(:donation).permit(:user_id, :is_paid, :payment_type, :source, :need_id, :amount, :source_id, :type)
     end
 
     
