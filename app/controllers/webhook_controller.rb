@@ -17,24 +17,28 @@ class WebhookController < ApplicationController
           status = source_val['data']['attributes']['status']
           gcash_source_record = ewallet_payment(amount, source_id)
           payment_status = gcash_source_record['data']['attributes']['status']
-          payment_type = gcash_source_record['data']['attributes']['type']
+          payment_type = gcash_source_record['data']['attributes']["source"]["type"]
+          # payment_type = gcash_source_record['data']['attributes']['type']
         end
       end
 
     end
 
-    # if payment_status == "paid"
-    #   case payment_type
-    #   when "gcash"
-    #     donation = Donation.find_by(payment_type: "gcash", source: source_id)
-    #   when "grab_pay"
-    #     donation = Donation.find_by(payment_type: "grab_pay", source: source_id)
-    #   else
-    #     "error"
-    #   end
-    #   donation.update!(is_paid: true) if donation.present?
-      
-    # end
+    # UPDATE OF DONATION INSTANCE ASSOCIATED WITH THE SOURCE CAPTURED
+
+    if payment_status == "paid"
+      case payment_type
+      when "gcash"
+        donation = Donation.find_by(payment_type: "gcash", source: source_id)
+      when "grab_pay"
+        donation = Donation.find_by(payment_type: "grab_pay", source: source_id)
+      else
+        "error"
+      end
+      donation.update!(is_paid: true) if donation.present?
+    end
+
+    # END
 
     render(status: :ok)
   end
@@ -56,7 +60,7 @@ class WebhookController < ApplicationController
           "events" => [
             "source.chargeable", "payment.paid", "payment.failed"
           ],
-          "url" => "https://calamity-response-be.herokuapp.com/listen"
+          "url" => "https://c5e4-136-158-16-23.ap.ngrok.io/listen"
         }
       }
     })

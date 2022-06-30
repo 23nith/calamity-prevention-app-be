@@ -3,6 +3,7 @@ class DonationsController < ApplicationController
 
   def index
     @donations = Donation.all
+    render json: @donations
   end
 
   def show
@@ -21,21 +22,30 @@ class DonationsController < ApplicationController
     require 'uri'
     require 'net/http'
     require 'openssl'
+    
+    @donation = Donation.new(donation_params)
+    if @donation.save!
+      url = URI("https://api.paymongo.com/v1/sources")
+  
+      http = Net::HTTP.new(url.host, url.port)
+      http.use_ssl = true
+  
+      request = Net::HTTP::Post.new(url)
+      request["Accept"] = 'application/json'
+      request["Content-Type"] = 'application/json'
+      request["Authorization"] = "Basic #{ENV['paymongo_token']}"
+      request.body = "{\"data\":{\"attributes\":{\"amount\":10000,\"redirect\":{\"success\":\"http://localhost:3001/calamity-response-app-fe#/success\",\"failed\":\"http://localhost:3001/calamity-response-app-fe#/failed\"},\"type\":\"#{params[:type]}\",\"currency\":\"PHP\"}}}"
+  
+      response = http.request(request)
+      body = JSON.parse(response.read_body)
+      src = body["data"]["id"]
+      @donation.update(source: src)
+      puts response.read_body
+      render json: response.read_body
+    else
+      render json: @donation.errors, status: :unprocessable_entity
+    end
 
-    url = URI("https://api.paymongo.com/v1/sources")
-
-    http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = true
-
-    request = Net::HTTP::Post.new(url)
-    request["Accept"] = 'application/json'
-    request["Content-Type"] = 'application/json'
-    request["Authorization"] = "Basic #{ENV['paymongo_token']}"
-    request.body = "{\"data\":{\"attributes\":{\"amount\":10000,\"redirect\":{\"success\":\"https://23nith.github.io/calamity-response-app-fe/#/success\",\"failed\":\"https://23nith.github.io/calamity-response-app-fe/#/failed\"},\"type\":\"#{donation_params["type"]}\",\"currency\":\"PHP\"}}}"
-
-    response = http.request(request)
-    puts response.read_body
-    render json: response.read_body
   end
 
   def payment
