@@ -60,7 +60,7 @@ class WebhookController < ApplicationController
           "events" => [
             "source.chargeable", "payment.paid", "payment.failed"
           ],
-          "url" => "https://c5e4-136-158-16-23.ap.ngrok.io/listen"
+          "url" => "https://calamity-response-be.herokuapp.com/listen"
         }
       }
     })

@@ -34,7 +34,7 @@ class DonationsController < ApplicationController
       request["Accept"] = 'application/json'
       request["Content-Type"] = 'application/json'
       request["Authorization"] = "Basic #{ENV['paymongo_token']}"
-      request.body = "{\"data\":{\"attributes\":{\"amount\":10000,\"redirect\":{\"success\":\"http://localhost:3001/calamity-response-app-fe#/success\",\"failed\":\"http://localhost:3001/calamity-response-app-fe#/failed\"},\"type\":\"#{params[:type]}\",\"currency\":\"PHP\"}}}"
+      request.body = "{\"data\":{\"attributes\":{\"amount\":10000,\"redirect\":{\"success\":\"https://23nith.github.io/calamity-response-app-fe/#/success\",\"failed\":\"https://23nith.github.io/calamity-response-app-fe/#/failed\"},\"type\":\"#{params[:type]}\",\"currency\":\"PHP\"}}}"
   
       response = http.request(request)
       body = JSON.parse(response.read_body)
