@@ -2,7 +2,9 @@ class DonationsController < ApplicationController
   before_action :set_donation, only: %i[show update destroy]
 
   def index
-    @donations = Donation.all
+    # Donation.where(created_at: )
+    # @donations = Donation.all
+    @donations = Donation.all.map{|x| {id: x.id, need_id: x.need.id, need: x.need.description, user: x.user.email, status: x.is_paid, area: x.user.area.name}}
     render json: @donations
   end
 
