@@ -16,6 +16,7 @@ class WebhookController < ApplicationController
         if source_val.present? && source_val['data'].present?
           status = source_val['data']['attributes']['status']
           gcash_source_record = ewallet_payment(amount, source_id)
+          puts "**************** #{gcash_source_record} ************************"
           payment_status = gcash_source_record['data']['attributes']['status']
           payment_type = gcash_source_record['data']['attributes']["source"]["type"]
           # payment_type = gcash_source_record['data']['attributes']['type']
