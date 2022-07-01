@@ -11,6 +11,16 @@ class DonationsController < ApplicationController
   def show
   end
 
+  def reports
+    @areas = Area.all.map{|x| {area_name: x.name, calamities: x.calamities.map{|y| {calamity_name: y.description, needs: y.needs.map{|z| {id: z.id, cost: z.cost, count: z.count, description: z.description, donations: z.donations.sum{|a| a[:amount]}}}}}}}.to_json
+    render json: @areas
+  end
+
+  def donations_per_need
+    @donations = Need.where(id: params[:id]).map{|x| {donations: x.donations.map{|y| {user: y.user.email, need: y.need.description, amount: y.amount, method: y.payment_type, date: x.created_at}}}}
+    render json: @donations
+  end
+
   def create
     @donation = Donation.new(donation_params)
     if @donation.save!

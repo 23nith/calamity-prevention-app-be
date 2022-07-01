@@ -10,11 +10,11 @@
 ############### SEED FOR TESTS ##################
 
 3.times do |x|
-  Area.create!(address: "test address #{x + 1}", name: "test name #{x + 1}", longitude: 1.5, latitude: 1.5, radius: 1.5)
+  Area.create!(address: "Area address #{x + 1}", name: "Area name #{x + 1}", longitude: 1.5, latitude: 1.5, radius: 1.5)
 end
 
 3.times do |x|
-  Calamity.create!(area_id: Area.first.id, estimated_date_from: DateTime.now, estimated_date_to: DateTime.now + 1, description: "test description #{x + 1}", calamity_type: "test type #{x + 1}" )
+  Calamity.create!(area_id: Area.first.id, estimated_date_from: DateTime.now, estimated_date_to: DateTime.now + 1, description: "Calamity description #{x + 1}", calamity_type: "Calamity type #{x + 1}" )
 end
 
 3.times do |x|
@@ -35,7 +35,7 @@ end
 
 
 3.times do |x|
-  Need.create!(calamity_id: Calamity.first.id, cost: 50, count: 3, description: "Need #{x + 1}")
+  Need.create!(calamity_id: Calamity.first.id, cost: 50, count: 3, description: "Need Description #{x + 1}")
 end
 
 3.times do |x|
