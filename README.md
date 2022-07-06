@@ -39,10 +39,10 @@
 
   <p align="center">
 <!--     An awesome README template to jumpstart your projects! -->
-    <br />
+<!--     <br /> -->
 <!--     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
     <br /> -->
-    <br />
+<!--     <br /> -->
     <a href="https://23nith.github.io/calamity-response-app-fe/#/">View Demo</a>
     ·
     <a href="https://github.com/23nith/calamity-prevention-app-be/issues">Report Bug</a>
