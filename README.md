@@ -45,9 +45,9 @@
     <br />
     <a href="https://23nith.github.io/calamity-response-app-fe/#/">View Demo</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    <a href="https://github.com/23nith/calamity-prevention-app-be/issues">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    <a href="https://github.com/23nith/calamity-prevention-app-be/issues">Request Feature</a>
   </p>
 </div>
 
