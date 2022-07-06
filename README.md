@@ -32,7 +32,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://23nith.github.io/calamity-response-app-fe/static/media/app_logo.af95baea6f2d0e1b8168.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Calamity Response App</h3>
