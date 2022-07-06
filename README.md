@@ -170,9 +170,9 @@ _Below is an example of how you can instruct your audience on installing and set
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x] Add E-Wallet payment 
+- [x] Add e-wallet payment processing feature
 - [x] Add Google Maps Api
-- [ ] Add credit card processing
+- [ ] Add credit card processing feature
 - [ ] Add dashboard component
 - [ ] Add messaging feature
 
