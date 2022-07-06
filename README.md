@@ -31,7 +31,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <a href="https://github.com/23nith/calamity-prevention-app-be">
     <img src="https://23nith.github.io/calamity-response-app-fe/static/media/app_logo.af95baea6f2d0e1b8168.png" alt="Logo" width="300" height="300">
   </a>
 
