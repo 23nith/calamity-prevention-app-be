@@ -172,6 +172,7 @@ _Below is an example of how you can instruct your audience on installing and set
 
 - [x] Add e-wallet payment processing feature
 - [x] Add Google Maps Api
+- [ ] Complete the front end
 - [ ] Add credit card processing feature
 - [ ] Add dashboard component
 - [ ] Add messaging feature
