@@ -48,6 +48,8 @@
     <a href="https://github.com/23nith/calamity-prevention-app-be/issues">Report Bug</a>
     ·
     <a href="https://github.com/23nith/calamity-prevention-app-be/issues">Request Feature</a>
+    ·
+    <a href="https://github.com/23nith/calamity-response-app-fe/tree/master">Sample Front-End Repo</a>
   </p>
 </div>
 
