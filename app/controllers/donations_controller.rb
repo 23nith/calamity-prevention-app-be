@@ -9,6 +9,7 @@ class DonationsController < ApplicationController
   end
 
   def show
+    render json: @donation
   end
 
   def reports
