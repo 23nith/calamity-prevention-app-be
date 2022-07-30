@@ -16,25 +16,30 @@ class WebhookController < ApplicationController
         if source_val.present? && source_val['data'].present?
           status = source_val['data']['attributes']['status']
           gcash_source_record = ewallet_payment(amount, source_id)
+          # puts "**************** #{gcash_source_record} ************************"
           payment_status = gcash_source_record['data']['attributes']['status']
-          payment_type = gcash_source_record['data']['attributes']['type']
+          payment_type = gcash_source_record['data']['attributes']["source"]["type"]
+          # payment_type = gcash_source_record['data']['attributes']['type']
         end
       end
 
     end
 
-    # if payment_status == "paid"
-    #   case payment_type
-    #   when "gcash"
-    #     donation = Donation.find_by(payment_type: "gcash", source: source_id)
-    #   when "grab_pay"
-    #     donation = Donation.find_by(payment_type: "grab_pay", source: source_id)
-    #   else
-    #     "error"
-    #   end
-    #   donation.update!(is_paid: true) if donation.present?
-      
-    # end
+    # UPDATE OF DONATION INSTANCE ASSOCIATED WITH THE SOURCE CAPTURED
+
+    if payment_status == "paid"
+      case payment_type
+      when "gcash"
+        donation = Donation.find_by(payment_type: "gcash", source: source_id)
+      when "grab_pay"
+        donation = Donation.find_by(payment_type: "grab_pay", source: source_id)
+      else
+        "error"
+      end
+      donation.update!(is_paid: true) if donation.present?
+    end
+
+    # END
 
     render(status: :ok)
   end
