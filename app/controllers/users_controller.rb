@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     if current_user.role == "admin"
       @user = User.new(user_params)
       if current_user.role == "admin"
-        @user.skip_confirmation!
+        # @user.skip_confirmation!
       end
 
       if @user.save!
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       @user.update(email: user_params[:email])
       @user.confirmed_at = DateTime.now
-      @user.skip_confirmation!
+      # @user.skip_confirmation!
       @user.update(password: user_params[:password])
       @user.update(first_name: user_params[:first_name])
       @user.update(last_name: user_params[:last_name])
