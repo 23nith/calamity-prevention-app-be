@@ -47,6 +47,8 @@ Rails.application.routes.draw do
   post '/payment' => 'donations#payment'
   post '/webhook' => 'webhook#create'
   post '/listen' => 'webhook#listen'
+  post '/donations_per_need' => 'donations#donations_per_need'
+  get '/reports' => 'donations#reports'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
